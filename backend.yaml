@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vidly-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: vidly-backend
+  template:
+    metadata:
+      labels:
+        app: vidly
+        tier: backend
+    spec:
+      containers:
+        - name: vidly-backend
+          image: mrehanabbasi/vidly-backend-ci-cd
+          resources:
+            limits:
+              memory: "1024Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vidly-backend
+spec:
+  type: ClusterIP
+  selector:
+    app: vidly
+    tier: backend
+  ports:
+    - port: 5000
+      targetPort: 3000
