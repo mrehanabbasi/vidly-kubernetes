@@ -28,10 +28,10 @@ kind: Service
 metadata:
   name: frontend
 spec:
-  type: ClusterIP
+  type: NodePort
   selector:
     app: vidly
-    tier: frontend
   ports:
-    - port: 4000
+    - port: 8080
       targetPort: 3000
+      nodePort: 9090
