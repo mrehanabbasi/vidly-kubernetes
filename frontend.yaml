@@ -33,6 +33,6 @@ spec:
     app: vidly
     tier: frontend
   ports:
-    - port: 8080
+    - port: 3000
       targetPort: 3000
-      nodePort: 9090
+      nodePort: 4000
