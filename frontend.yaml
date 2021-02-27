@@ -6,7 +6,7 @@ spec:
   replicas: 2
   selector:
     matchLabels:
-      app: vidly-frontend
+      app: vidly
   template:
     metadata:
       labels:
@@ -15,10 +15,10 @@ spec:
     spec:
       containers:
         - name: vidly-frontend
-          image: mrehanabbasi/vidly-frontend-ci-cd
+          image: mrehanabbasi/vidly-frontend-ci-cd:latest
           resources:
             limits:
-              memory: "1024Mi"
+              memory: "1Gi"
               cpu: "500m"
           ports:
             - containerPort: 3000
@@ -35,4 +35,4 @@ spec:
   ports:
     - port: 3000
       targetPort: 3000
-      nodePort: 4000
+      nodePort: 32000

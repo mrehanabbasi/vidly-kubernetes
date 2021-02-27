@@ -6,7 +6,7 @@ spec:
   replicas: 2
   selector:
     matchLabels:
-      app: vidly-backend
+      app: vidly
   template:
     metadata:
       labels:
@@ -18,8 +18,8 @@ spec:
           image: mrehanabbasi/vidly-backend-ci-cd
           resources:
             limits:
-              memory: "1024Mi"
-              cpu: "500m"
+              memory: "1Gi"
+              cpu: "800m"
           ports:
             - containerPort: 3000
 ---
