@@ -22,12 +22,18 @@ spec:
               cpu: "500m"
           ports:
             - containerPort: 3000
-          livenessProbe:
-            httpGet:
-              path: /movies
+          readinessProbe:
+            tcpSocket:
               port: 3000
-            initialDelaySeconds: 5
-            failureThreshold: 5
+            initialDelaySeconds: 10
+            failureThreshold: 2
+            periodSeconds: 15
+          livenessProbe:
+            tcpSocket:
+              port: 3000
+            initialDelaySeconds: 30
+            failureThreshold: 2
+            periodSeconds: 15
 ---
 apiVersion: v1
 kind: Service

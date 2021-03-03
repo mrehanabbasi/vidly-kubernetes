@@ -22,13 +22,21 @@ spec:
               cpu: "800m"
           ports:
             - containerPort: 3900
-          readinessProbe:
-            exec:
-              command:
-                - "ping"
-                - "db:27107"
-            initialDelaySeconds: 5
-            failureThreshold: 5
+          # readinessProbe:
+          #   exec:
+          #     command:
+          #       - "ping"
+          #       - "-w"
+          #       - "5"
+          #       - "db:27107"
+          #   initialDelaySeconds: 15
+          #   periodSeconds: 10
+          livenessProbe:
+            tcpSocket:
+              port: 3900
+            initialDelaySeconds: 15
+            failureThreshold: 2
+            periodSeconds: 10
 ---
 apiVersion: v1
 kind: Service
